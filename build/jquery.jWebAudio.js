@@ -232,6 +232,7 @@ jWebAudio.Sound = function() {
     // Default options for sound
     var options = {
         'loop': false,
+        'loopGap': 0,
         'muted': false,
         'volume': 100,
         
@@ -493,6 +494,7 @@ jWebAudio.WebAudioSound = function(buffer, finishFunc) {
     
     var _finishEvent = null;
     var _fadeOutEvent = null;
+    var _loopGapEvent = null;
     
     // Play if was not playing
     this.play = function() {
@@ -530,6 +532,13 @@ jWebAudio.WebAudioSound = function(buffer, finishFunc) {
                 if (self.options.loop === true) {
                     // start from beginning
                     self.seek(0);
+                    // wait for loopGap to play
+                    if (self.options.loopGap && self.options.loopGap > 0) {
+                        self.stop();
+                        loopGapEvent = setTimeout(function() {
+                            play();
+                        }, self.options.loopGap * 1000);
+                    }
                 } else {
                     _offset = 0;
                     _state = self.STOPPED;
@@ -779,6 +788,7 @@ jWebAudio.extend(jWebAudio.Spatiality, jWebAudio.Effect);
 jWebAudio.Spatiality.prototype.getName = function() {
     return '3d';
 };
+
 /*
  * Copyright (C) 2013, Intel Inc. All rights reserved.
  *
