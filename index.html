@@ -62,12 +62,12 @@
             <div id="download">
                 <div class="title">Download</div>
                 <div class="subtitle">jQuery Version</div>
-                <span class="button"><a href="build/jquery.jWebAudio.js" alt="download original jQuery version jWebAudio" target="_blank">Original: 37.8kb</a></span>
-                <span class="button"><a href="build/jquery.jWebAudio.min.js" alt="download minified jQuery version jWebAudio" target="_blank">Minified: 12.9kb</a></span>
+                <span class="button"><a href="https://raw.github.com/01org/jWebAudio/master/build/jquery.jWebAudio.js" alt="download original jQuery version jWebAudio" target="_blank">Original: 37.8kb</a></span>
+                <span class="button"><a href="https://raw.github.com/01org/jWebAudio/master/build/jquery.jWebAudio.min.js" alt="download minified jQuery version jWebAudio" target="_blank">Minified: 12.9kb</a></span>
                 
                 <div class="subtitle">Standard Version</div>
-                <span class="button"><a href="build/standard.jWebAudio.js" alt="download original standard version jWebAudio" target="_blank">Original: 23.7kb</a></span>
-                <span class="button"><a href="build/standard.jWebAudio.min.js" alt="download minified standard version jWebAudio" target="_blank">Minified: 9.0kb</a></span>
+                <span class="button"><a href="https://raw.github.com/01org/jWebAudio/master/build/standard.jWebAudio.js" alt="download original standard version jWebAudio" target="_blank">Original: 23.7kb</a></span>
+                <span class="button"><a href="https://raw.github.com/01org/jWebAudio/master/build/standard.jWebAudio.min.js" alt="download minified standard version jWebAudio" target="_blank">Minified: 9.0kb</a></span>
             </div>
             
             <div id="examples">
@@ -760,6 +760,29 @@
                             'loop': true
                         });
                     }
+                    </pre>
+                </div>
+                <p>Non-multishot sound can be set to loop after certain interval, which means play again after certain seconds.</p>
+                <div class="version">jQuery Version</div>
+                <div>
+                    <pre class="brush: js; highlight: 4; toolbar: false;">
+                    $('#audio').jWebAudio('addSoundSource', {
+                        'url': 'resource/a.ogg',
+                        'loop': true,
+                        'loopGap': 3 // in seconds
+                    });
+                    </pre>
+                </div>
+                <div class="version">Standard Version</div>
+                <div>
+                    <pre class="brush: js; highlight: 5; toolbar: false;">
+                        var engine = new jWebAudio.SoundEngine();
+                        var source = engine.addSoundSource({
+                            'url': 'resource/a.ogg'
+                            'loop': true,
+                            'loopGap': 3 // in seconds
+                        });
+                        source.sound.play();
                     </pre>
                 </div>
                 
@@ -2358,9 +2381,29 @@
                             'loop': true
                         });
                         source.sound.play();
-                        
-                        // get loop
-                        var loop = source.sound.getLoop();
+                    </pre>
+                </div>
+                <p>Non-multishot sound can be set to loop after certain interval, which means play again after certain seconds.</p>
+                <div class="version">jQuery Version</div>
+                <div>
+                    <pre class="brush: js; highlight: 4; toolbar: false;">
+                    $('#audio').jWebAudio('addSoundSource', {
+                        'url': 'resource/a.ogg',
+                        'loop': true,
+                        'loopGap': 3 // in seconds
+                    });
+                    </pre>
+                </div>
+                <div class="version">Standard Version</div>
+                <div>
+                    <pre class="brush: js; highlight: 5; toolbar: false;">
+                        var engine = new jWebAudio.SoundEngine();
+                        var source = engine.addSoundSource({
+                            'url': 'resource/a.ogg'
+                            'loop': true,
+                            'loopGap': 3 // in seconds
+                        });
+                        source.sound.play();
                     </pre>
                 </div>
                 
@@ -2541,6 +2584,7 @@
                 <div class="subtitle">Resource downloaded</div>
                 <p>Sound file named 'a.ogg' in examples of this site is downloaded from <a href="http://musopen.org/music/piece/744">here</a> under the license of <a href="http://creativecommons.org/publicdomain/mark/1.0/">Public Domain</a> and it was made by <a href="http://en.wikipedia.org/wiki/Antonio_Lotti">Antonio Lotti</a>.</p>
                 <p>Sound files named 'in.wav' and 'out.wav' in examples of this site are downloaded from <a href="http://www.mediacollege.com/downloads/sound-effects/electronics/computer/">http://www.mediacollege.com</a> under <a href="http://www.mediacollege.com/downloads/permission/public-domain.html">Public Domain Permission</a>.</p>
+                <p>Developed and maintained by <a href="http://zhangwenli.com" target="_blank">Wenli Zhang</a>.</p>
             </div>
         </div>
         <div id="sidebar">

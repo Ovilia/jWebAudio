@@ -1,8 +1,9 @@
 jWebAudio
 =========
 
-JavaScript Web Audio library designed for web games
-with both jQuery version and standard version.
+JavaScript Web Audio library designed for web games with both jQuery version and standard version.
+
+Examples and API available at http://01org.github.com/jWebAudio/ .
 
 License
 -------
@@ -235,12 +236,15 @@ sound.setMuted(true);
 Loop
 ----
 
+Non-multishot sound can be set to loop after certain interval.
+
 jQuery version
 
 ```javascript
 $('#audio').jWebAudio('addSoundSource', {
     'url': 'resource/a.ogg',
-    'loop': true
+    'loop': true,
+    'loopGap': 3 // in seconds, default 0
 });
 ```
 
@@ -250,7 +254,8 @@ standard version
 var engine = new jWebAudio.SoundEngine();
 var source = engine.addSoundSource({
     'url': 'resource/a.ogg'
-    'loop': true
+    'loop': true,
+    'loopGap': 3 // in seconds, default 0
 });
 ```
 
