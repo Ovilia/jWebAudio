@@ -311,7 +311,7 @@ jWebAudio.Sound = function() {
     
     var ctx = jWebAudio.context;
     
-    var gain = ctx.createGainNode();
+    var gain = ctx.createGain();
     this.__defineGetter__('gain', function() {
         return gain;
     });
@@ -448,7 +448,7 @@ jWebAudio.WebAudioSound = function(buffer, finishFunc) {
     var _ctx = jWebAudio.context;
     
     // Gain node for fading in and out
-    var _fadeGain = _ctx.createGainNode();
+    var _fadeGain = _ctx.createGain();
     // Source connect _fadeGain, _fadeGain connect gain, 
     // gain connect sound effect gains
     _fadeGain.connect(self.gain);
@@ -521,7 +521,7 @@ jWebAudio.WebAudioSound = function(buffer, finishFunc) {
                     _ctx.currentTime + self.options.fadeInTime);
         }
 
-        _source.noteGrainOn(0, _offset, duration);
+        _source.start(0, _offset, duration);
 
         _startTime = _ctx.currentTime;
         _state = self.PLAYING;
@@ -606,7 +606,7 @@ jWebAudio.WebAudioSound = function(buffer, finishFunc) {
     // caused by stopping or pausing the sound
     function stop() {
         if (_state === self.PLAYING) {
-            _source.noteOff(0);
+            _source.stop()
             _source = null;
         
             _offset += (_ctx.currentTime - _startTime);
@@ -661,14 +661,14 @@ jWebAudio.WebAudioMultishotSound = function(buffer) {
         src.loop = this.loop;
 
         src.connect(self.gain);
-        src.noteOn(0);
+        src.start();
 
         _playedSrc.push(src);
     };
 
     this.stop = function() {
         _playedSrc.forEach(function(element) {
-            element.noteOff(0);
+            element.stop();
             element.disconnect();
         });
 
@@ -788,7 +788,6 @@ jWebAudio.extend(jWebAudio.Spatiality, jWebAudio.Effect);
 jWebAudio.Spatiality.prototype.getName = function() {
     return '3d';
 };
-
 /*
  * Copyright (C) 2013, Intel Inc. All rights reserved.
  *
