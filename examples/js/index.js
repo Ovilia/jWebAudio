@@ -26,10 +26,6 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 })();
 
 $(document).ready(function() {
-    if (!/chrome/.test(navigator.userAgent.toLowerCase())) {
-        alert('To enable Web Audio, please try with Chrome.');
-    }
-
     // Side bar on the right part
     var sideWidth = ($(window).width() - 600) / 2;
     $('#sidebar').css('width', sideWidth - 20).slideDown();
