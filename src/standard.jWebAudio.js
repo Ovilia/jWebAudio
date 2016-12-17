@@ -434,7 +434,40 @@ jWebAudio.Sound = function() {
         return null;
     }
     
-    gain.connect(ctx.destination);
+
+
+
+    this.analysize = function (fftSize, callback) {
+        if (fftSize) {
+            this._analyser.fftSize = fftSize * 2;
+            this.fftData = new Uint8Array(this._analyser.frequencyBinCount);
+        }
+
+        this._fftCallback = callback;
+    };
+
+    this._analyser = null;
+    this._analysize = function () {
+        var processor = ctx.createScriptProcessor(1024);
+        this._analyser = ctx.createAnalyser();
+        processor.connect(gain);
+        gain.connect(this._analyser);
+        this._analyser.connect(ctx.destination);
+
+        this.fftData = new Uint8Array(this._analyser.frequencyBinCount);
+
+        var self = this;
+
+        processor.onaudioprocess = function(fftSize) {
+            self._analyser.getByteTimeDomainData(self.fftData);
+
+            if (self._fftCallback) {
+                self._fftCallback(self.fftData);
+            }
+        };
+    };
+
+    this._analysize();
 };
 
 /* Web audio implementation of Sound class, extends Sound 

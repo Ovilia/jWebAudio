@@ -59,7 +59,7 @@ $('#audio').jWebAudio('addSoundSource', {
 });
 ```
 
-standard Version
+Standard Version
 ------------------
 
 [build/standard.jWebAudio.js][njqueryJWA] alone should be included to use the standard version.
@@ -67,7 +67,7 @@ standard Version
 <script type="text/javascript" src="build/standard.jWebAudio.js"></script>
 ```
 
-standard version uses SoundEngine to add sound source and returns the instance(s) of sound source when added.
+Standard version uses SoundEngine to add sound source and returns the instance(s) of sound source when added.
 
 ```javascript
 var engine = new jWebAudio.SoundEngine();
@@ -97,7 +97,7 @@ $('#audio').jWebAudio('addSoundSource', {
 });
 ```
 
-standard version
+Standard Version
 
 ```javascript
 var engine = new jWebAudio.SoundEngine();
@@ -118,7 +118,7 @@ $('#audio').jWebAudio('load', function() {
 });
 ```
 
-standard version
+Standard Version
 
 ```javascript
 source.load(function() {
@@ -141,7 +141,7 @@ $('#audio').jWebAudio('addSoundSource', {
 });
 ```
 
-standard version
+Standard Version
 
 ```javascript
 var engine = new jWebAudio.SoundEngine();
@@ -163,7 +163,7 @@ jQuery version
 $('#audio').jWebAudio.('play');
 ```
 
-standard version
+Standard Version
 
 ```javascript
 source.sound.play();
@@ -178,7 +178,7 @@ jQuery version
 $('#audio').jWebAudio.('pause');
 ```
 
-standard version
+Standard Version
 
 ```javascript
 source.sound.pause();
@@ -193,7 +193,7 @@ jQuery version
 $('#audio').jWebAudio.('stop');
 ```
 
-standard version
+Standard Version
 
 ```javascript
 source.sound.stop();
@@ -210,7 +210,7 @@ $('#audio').jWebAudio('options', {
 });
 ```
 
-standard version
+Standard Version
 
 ```javascript
 sound.setVolume(100);
@@ -227,7 +227,7 @@ $('#audio').jWebAudio('options', {
 });
 ```
 
-standard version
+Standard Version
 
 ```javascript
 sound.setMuted(true);
@@ -248,7 +248,7 @@ $('#audio').jWebAudio('addSoundSource', {
 });
 ```
 
-standard version
+Standard Version
 
 ```javascript
 var engine = new jWebAudio.SoundEngine();
@@ -268,7 +268,7 @@ jQuery version
 $('#audio').jWebAudio('seek', 10);
 ```
 
-standard version
+Standard Version
 
 ```javascript
 source.sound.seek(10);
@@ -286,7 +286,7 @@ $('#audio').jWebAudio('addSoundSource', {
 });
 ```
 
-standard version
+Standard Version
 
 ```javascript
 var engine = new jWebAudio.SoundEngine();
@@ -323,7 +323,7 @@ var id = $('#div1').jWebAudio('addEffect', {
 });
 ```
 
-standard version
+Standard Version
 
 ```javascript
 // Add sound effect
@@ -358,12 +358,47 @@ effect = $('#audio').jWebAudio('getEffect', id);
 effect.node.setPosition(1, 0, 0);
 ```
 
-standard version
+Standard Version
 
 ```javascript
 var id = source.sound.addEffect('3d');
 effect = source.sound.getEffect(id);
 effect.node.setPosition(1, 0, 0);
+```
+
+FFT Analysis
+------------
+
+jQuery version
+
+(Not supported)
+
+Standard Version
+
+Set bin numbers:
+
+```javascript
+source.sound.analysize(128);
+```
+
+Get FFT data:
+
+```javascript
+source.sound.fftData
+```
+
+Example:
+
+```javascript
+function play() {
+    source.load(function() {
+        source.sound.analysize(128);
+        source.sound.play();
+        setInterval(function () {
+            console.log(source.sound.fftData);
+        }, 2000);
+    });
+}
 ```
 
 [jquery]: http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js

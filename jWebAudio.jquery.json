@@ -6,16 +6,17 @@
         "audio",
         "sound",
         "music",
-        "game"
+        "game",
+        "fft"
     ],
-    "version": "0.1.3",
+    "version": "0.1.4",
     "author": {
         "name": "Intel Inc.",
         "url": "http://intel.com"
     },
     "maintainers": [{
         "name": "Wenli Zhang",
-        "email": "OviliaZhang@gmail.com",
+        "email": "me@zhangwenli.com",
         "url": "http://zhangwenli.com"
     }, {
         "name": "Xingnan Wang",
